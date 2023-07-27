@@ -27,8 +27,10 @@ public class Reservation {
     private LocalDate checkIn;
     private LocalDate checkOut;
     private Integer rooms;
-    private Double finalPrice;
-    private String adressHotel;
+    private Double price;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     // custom setter for check-in
     public void setCheckIn(String checkIn) {
