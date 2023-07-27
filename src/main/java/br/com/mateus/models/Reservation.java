@@ -7,23 +7,28 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 
 @Getter
 @Entity(name = "reservations")
 public class Reservation {
     
-    private static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    private static final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String guestName;
-    private Hotel hotelName;
+    @ManyToOne
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
     private LocalDate checkIn;
     private LocalDate checkOut;
     private Integer rooms;
-    private Double price;
+    private Double finalPrice;
+    private String adressHotel;
 
     // custom setter for check-in
     public void setCheckIn(String checkIn) {
