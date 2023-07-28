@@ -2,6 +2,7 @@ package br.com.mateus.models;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,8 +11,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
+@ToString
 @Entity(name = "reservations")
 public class Reservation {
     
@@ -48,5 +51,9 @@ public class Reservation {
 
     public void setRooms(int rooms) {
         this.rooms = rooms;
+    }
+
+    public long numberOfDaysBooked () {
+        return ChronoUnit.DAYS.between(checkIn, checkOut);
     }
 }

@@ -1,14 +1,20 @@
 package br.com.mateus.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.Getter;
 
 @Data
+@Getter
 @Entity (name = "users")
 public class User {
 
@@ -19,4 +25,10 @@ public class User {
     private String name;
     @Email(message = "Email should be valid")
     private String email;
+    @OneToMany(mappedBy = "user")
+    private List<Reservation> reservations = new ArrayList<Reservation>();
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
 }

@@ -16,7 +16,7 @@ public class Hotel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String hotelName;
+    private String name;
     private String adress; 
     private Integer quantityRooms;   
     private Double priceDaily;
